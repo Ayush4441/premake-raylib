@@ -28,7 +28,7 @@ newoption
         { "opengles2", "OpenGLES 2.0"},
         { "opengles3", "OpenGLES 3.0"}
     },
-    default = "opengl33"
+    default = "opengles2"
 }
 
 function string.starts(String,Start)
@@ -118,7 +118,7 @@ function use_Box2dV3()
     use_library("box2d", "erincatto/box2d")
 end
 
-workspaceName = path.getbasename(os.getcwd())
+workspaceName = "Engine41"
 
 if (string.lower(workspaceName) == "raylib") then
     print("raylib is a reserved name. Name your project directory something else.")
@@ -150,19 +150,11 @@ workspace (workspaceName)
 
     targetdir "bin/%{cfg.buildcfg}/"
 
-    if(os.isdir("game")) then
-        startproject(workspaceName)
-    end
-
 cdialect "C17"
 cppdialect "C++17"
 check_raylib();
 
 include ("raylib_premake5.lua")
-
-if(os.isdir("game")) then
-    include ("game")
-end
 
 folders = os.matchdirs("*")
 for _, folderName in ipairs(folders) do
